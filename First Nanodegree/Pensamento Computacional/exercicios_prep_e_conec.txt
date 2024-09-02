@@ -1,0 +1,22 @@
+Pablo Sarturi
+
+1.a) Não está frio. 
+b) Está frio e está chovendo.
+c) Está frio ou está chovendo.
+d) Está chovendo, se, e somente se está frio.
+e) Se está frio, então não está chovendo.
+f) Está frio ou não está chovendo.
+g) Não está frio e não está chovendo.
+h) Está frio, se, e somente se não está chovendo.
+i) Se está frio e não está chovendo, então está frio.
+
+2.a) Se Carlos é feliz, então Jorge é rico.
+b) Jorge é rico ou Carlos não é feliz.
+c) Carlos é feliz se, e somente se Jorge não é rico.
+d) Se jorge não é rico, então Carlos é feliz.
+e) Jorge é rico.
+f) Se Jorge não é rico e Carlos é feliz, então Jorge é rico.
+
+3.a) p ^ q
+c)~(~p v q)
+d)~(p ^ q)
