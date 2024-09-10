@@ -10,6 +10,10 @@ class Moto(Veiculo):
     def set_cilindradas(self, cilindradas):
         self.__cilindradas = cilindradas
     
-moto = Moto("Honda", "Biz", "123", 2015, 220)
-moto.partidaeletrica = True
-print(moto)
+    def __str__(self):
+        # pega o valor retornado desse método da classe pai
+        retorno = super().__str__()
+        # altera o valor
+        return f'''
+{retorno} 
+- Cilindradas: {self.__cilindradas}'''

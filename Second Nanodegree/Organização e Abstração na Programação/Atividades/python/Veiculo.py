@@ -31,11 +31,7 @@ class Veiculo:
         return 2024 - self.__ano
     ## altera a formatação padrao da string da classe
     def __str__(self):
-        return f'''
-- Modelo: {self.__modelo}
+        return f'''- Modelo: {self.__modelo}
 - Marca: {self.__marca}
 - Placa: {self.__placa} 
-- Ano: {self.__ano}
-    '''
-    
-meuCarro = Veiculo("Chevrolet", "Celta", "ABC-1234", 2014)
+- Ano: {self.__ano}'''

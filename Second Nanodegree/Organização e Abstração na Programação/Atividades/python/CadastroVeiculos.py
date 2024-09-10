@@ -1,12 +1,32 @@
 import os
-from Veiculo import Veiculo
+from Moto import Moto
+from Carro import Carro
+from Caminhao import Caminhao
 
 def cadastrar():
-    modelo = input("Qual o nome do carro? ")
+    tipo = input("Qual o tipo de veículo: (1) Carro, (2) Moto, (3) Caminhão ")
+    if tipo != "1" and tipo != "2" and tipo != "3":
+        os.system("cls")
+        print("Tipo inválido, reiniciando...")
+        return
+
+    os.system("cls")    
+    modelo = input("Qual o nome do veículo? ")
     marca = input("Qual a marca? ")
     placa = input("Qual é a placa? ")
     ano = input("Qual é o ano? ")
-    listaVeiculos.append(Veiculo(marca, modelo, placa, ano))
+    if tipo == "1":
+        numeroPortas = input("Quantas Portas? ")
+        veiculoAdd = Carro(marca, modelo, placa, ano, numeroPortas)
+    elif tipo == "2":
+        cilindradas = input("Quantas cilindradas? ")
+        veiculoAdd = Moto(marca, modelo, placa, ano, cilindradas)
+    elif tipo == "3":
+        capacidade = input("Qual a capacidade do caminhão? ")
+        veiculoAdd = Caminhao(marca, modelo, placa, ano, capacidade)
+    # adicionando a instancia na lista
+    listaVeiculos.append(veiculoAdd)
+    os.system("cls")
 
 def listar():
     if len(listaVeiculos) > 0:
@@ -28,6 +48,7 @@ def excluir():
 
 
 os.system("cls")
+# uma lista que pode ter varios tipos (moto, carro, caminhao)
 listaVeiculos = []
 while True:
     
