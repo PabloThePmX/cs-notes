@@ -35,4 +35,20 @@ function criaFraseValores(nomeProdutoFunction, valorUniFunction, qtdFunction){
     return fraseEx9 = `Produto ${nomeProdutoFunction} valor unitário R$${valorUni} e valor total R$${totalProdutos}`
 }
 
-console.log(criaFraseValores("Xbox", 4500, 2))
+//ex10
+function isPositiveOrNegative(numero){
+    // return numero > 0 
+    // ? "positivo" 
+    // : numero == 0 
+    //     ? "neutro" 
+    //     : "negativo"
+    if(numero > 0)
+        return "positivo"
+
+    if(numero < 0)
+        return "negativo"
+
+    return "neutro"
+}
+
+console.log(isPositiveOrNegative(2))
