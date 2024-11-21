@@ -20,7 +20,7 @@
     * Exp do usuário, quão fácil é de utilizar o produto/serviço.
   * Acessibilidade
   * Interação
-    * A troca entre o usuário e o sistema.
+    * A troca de informações entre o usuário e o sistema.
   * Conteúdo
     * Tudo que a gente consome
     * Redes sociais precisam de conteúdo gerado pelos usuários (seriam quase funcionários), enquanto portais de notícias sçao feito por jornalistas.
@@ -59,7 +59,7 @@
 * **Por que é importante o contraste**
 -------
 * **Pra que serve o blueprint**
-* **Qual a diferença entre prtótipo de alta fidelidade e baixa**
+* **Qual a diferença entre protótipo de alta fidelidade e baixa**
   * Vai ser preciso dizer qual é qual.
 * **Como pode ser feito o feedback**
   * Fazer entrevistas com outras pessoas

@@ -4,6 +4,7 @@
   * Para chamar os membros de uma classe pai, usa-se o `super`.
     * Pode-se chamar o construtor da classe pai também.
       * Dentro do construtor filho. 
+  * O `super` é usado para chamae métodos e atributos, equanto o `super()` é usado para chamar o construtor.
 
 ### Classe abstrata
   * É uma classe que não pode ser instanciada, mas ela pode ser herdada por outras.
