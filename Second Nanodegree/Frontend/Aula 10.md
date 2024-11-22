@@ -1,6 +1,6 @@
 # Aula 10
 
-* As variáves são colocadas fora do return (obviamente).
+* As variáveis são colocadas fora do return (obviamente).
 * A arrow function seria apenas uma função sem nome e usada apenas uma vez.
   * `const teste = () => {}`
     * O que vem depois do `=>` é o retorno.
