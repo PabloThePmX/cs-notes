@@ -2,11 +2,11 @@
 
 * SQL (Structured Query Language) é uma linguagem de consulta estruturada, usado para gerenciar bancos de dados relacionais (SGBDs).
 * É uma linguagem declarativa, ou seja, os usuário diz o que vai ser feito, e o SGBD executa.
-* Paronizada pela ANSI e ISO.
+* Patronizada pela ANSI e ISO.
 * Tipos de comandos SQL:  
   * DDL (Data Definition Language): Para definir a estrutura do banco.
   * DML (Data Manipulation Language): Alterar registros do banco.
-  * DCL (Data Control Language): Para controler o acesso aos dados.
+  * DCL (Data Control Language): Para controller o acesso aos dados.
   * TCL (Transaction Control Language): Gerencia as transações em si. 
 * Tipos de dados do Postgre:
   * Numéricos:
@@ -22,7 +22,7 @@
     * `Char`, cadeia de chars com número fixo.
       * Espaços em brancos são preenchidos, se necessário.
     * `Varchar`, tamanho variável, com limite máximo.
-    * `Text`, tamanho variável, sem limite de comprimeto definido.
+    * `Text`, tamanho variável, sem limite de comprimento definido.
   * Data e Hora
     * `Date`
     * `Time`

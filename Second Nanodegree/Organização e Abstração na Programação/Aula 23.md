@@ -18,7 +18,7 @@
     * Estruturais.
     * Comportamentais.
     * Interação.
-* Caracteristicas:
+* Características:
   * Caso de uso, agente/ator e relacionamento.
     * Ex: Cliente e sistema são os atores.
     * Os casos de uso são os requisitos.
@@ -33,6 +33,6 @@
 * Algumas ferramentas:
   * Drawio
   * Astah Community
-* Ser específico apenas para coisas mais importantes e principaís.
+* Ser específico apenas para coisas mais importantes e principais.
 * Para fazer os relacionamentos, é possível pensar que, para fazer determinado requisito, é preciso usar esse outro requisito.
   * Quase como uma ação e consequência.

@@ -4,7 +4,7 @@
 * O app é um protótipo de serviço e produto.
   * É uma mistura do wireframe e mock-up.
 * Tipos de protótipo
-  * Prótipo de alta fidelidade 
+  * Protótipo de alta fidelidade 
     * Mais parecido com o produto final.
     * Feito em softwares.
   * Baixa fidelidade
@@ -14,7 +14,7 @@
 * Diferenças entre UI e UX
   * UX é a experiência, o sentimento que a pessoa vai ter quando usar o nosso serviço
 * UI está dentro do UX.
-* **Qual a importancia da tipografia no design de interface para dispositivos moveis e web.**
+* **Qual a importância da tipografia no design de interface para dispositivos moveis e web.**
 * Pilares UX
   * Usabilidade
     * Exp do usuário, quão fácil é de utilizar o produto/serviço.
@@ -23,7 +23,7 @@
     * A troca de informações entre o usuário e o sistema.
   * Conteúdo
     * Tudo que a gente consome
-    * Redes sociais precisam de conteúdo gerado pelos usuários (seriam quase funcionários), enquanto portais de notícias sçao feito por jornalistas.
+    * Redes sociais precisam de conteúdo gerado pelos usuários (seriam quase funcionários), enquanto portais de notícias são feitos por jornalistas.
 * Pilares UI
   * Layout
     * É a estrutura, a distribuição das coisas.
@@ -35,7 +35,7 @@
   * Observação direta
     * Espionando como o usuário age.
   * Criação da persona
-    * As caracteristicas que definem um grupo, englobados como se fosse uma pessoa.
+    * As características que definem um grupo, englobados como se fosse uma pessoa.
   * Mapas de Empatia
   * Jornada do Usuário
     * **Qual é o objetivo da jornada do usuário?**

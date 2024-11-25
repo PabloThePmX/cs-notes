@@ -25,12 +25,12 @@
     * Usando React props não tem como fazer isso direto, apenas com `if else` dentro do componente.
 
 ### Renderização condicional
-* Utilizar if ternario dentro do JSX `<>`.
+* Utilizar if ternário dentro do JSX `<>`.
 * Colocar a condição dentro de chaves.
 * Da pra colocar como retorno da condição, tags, componentes, etc.
-* Para fazer um ternario sem else, usar `&&` no lugar do `?`.
+* Para fazer um ternário sem else, usar `&&` no lugar do `?`.
   * Mais comum fazer dessa forma.
-    * Ou seja, ao inves de fazer `if else`, fazer dois `ifs`
+    * Ou seja, ao invés de fazer `if else`, fazer dois `ifs`
       * Um dos ifs é normal, e o outro é negado.
 
 ### Estados de componente
@@ -39,7 +39,7 @@
 * "Atualização" da tela após um valor é alterado, estilo o `OnPropertyChanged` do WPF.
   * Vai renderizar o componente de novo ao trocar o estado.
 * Usa desconstrução de array.
-  * O retorno do useState é um array, e cada item vai ser atribuito na const.
+  * O retorno do useState é um array, e cada item vai ser atribuído na const.
 * Para converter uma variável para tipo de estado, usar o `useState`.
   * Ex.: `const [isLogged, setIsLogged] = useState(false);`
     * O valor inicial é o que vai no `useState()`

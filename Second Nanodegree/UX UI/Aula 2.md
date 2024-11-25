@@ -1,6 +1,6 @@
 # Aula 2
 
-* A UX do carro seria a potência, a imponencia, as sensações em si.
+* A UX do carro seria a potência, a imponência, as sensações em si.
 * A UI seria as partes mecânicas.
 * Commodities são coisas simples, que são sempre iguais. Ex.: Arroz (não tem arroz mais bonito que o outro e tal).
 * O White Label seria pegar "coisas" e depois juntar tudo para algo próprio.
@@ -10,7 +10,7 @@
   * Duolingo
   * Netflix
   * Trello
-* DCU - Desing Centrado no Usuário
+* DCU - Design Centrado no Usuário
   * É uma filosofia que coloca o usuário no centro do projeto de interface.
 
 #### Os 4 pilares do UX:

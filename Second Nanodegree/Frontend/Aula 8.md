@@ -15,10 +15,10 @@
     * Ex.: `submit`, `click`, etc.
   * O segundo, é a função a ser disparada.
     * Por parâmetro na função de callback, podemos usar o `event` para receber o evento que disparou a função.
-* Evitar chamar a função diretamento dentro do HTML, como `onsubmit` e afins.
+* Evitar chamar a função diretamente dentro do HTML, como `onsubmit` e afins.
 * O `callback` é realizado quando é passada uma função por parâmetro para outra função.
 * O comportamento padrão do navegador quando é disparado um evento submit, é de recarregar a página.
-  * Usar o `event.preventDefault()` (ou `e`) para previnir que esse comportamento padrão seja executado.
+  * Usar o `event.preventDefault()` (ou `e`) para prevenir que esse comportamento padrão seja executado.
 * Para chamar um servidor (api), usamos o `fetch`, e ele retorna para nos uma `promise`.
   * É uma `promise` pois não sabemos se vai realmente retornar. 
     * Possui três estados

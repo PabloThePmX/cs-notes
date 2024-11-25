@@ -1,7 +1,7 @@
 # Aula 12
 
 * Linguagens Interpretadas e Compiladas
-  * **Interpretadas:** são aqueas que o código fonte é executado linha por linha pelo interpretador, sem precisar compilar.
+  * **Interpretadas:** são aquelas que o código fonte é executado linha por linha pelo interpretador, sem precisar compilar.
     * Python, Javascript, PHP, etc.
     * Maior portabilidade, pois não precisa gerar para infras diferentes (windows, linux, mac).
   * **Compiladas:** Requerem que seja compilado antes da execução. O código é traduzido para linguagem de máquina e é produzido um arquivo executável.
@@ -12,7 +12,7 @@
 * Write Once, Run Anywhere (WORA).
 * Multiplataforma
 * Vai ser mais pesado.
-* A Oracle adqiriu a Sun e consequentemente pegou o Java.
+* A Oracle adquiriu a Sun e consequentemente pegou o Java.
 * As principais versões atuais (LTS):
   * Java 22
   * Java 21
@@ -30,7 +30,7 @@
 
 * ### Desenvolvimento
 * Desabilitar o inlay.
-* Métodos e propriedades é em camelCase, e a classe PastalCase.
+* Métodos e propriedades é em camelCase, e a classe PascalCase.
 * O `javac` é o compilador, ele precisa receber o arquivo.
 * Para executar o código, vamos colocar o `java` mais o nome da classe (sem a extensão no nome).
 * Rodando automaticamente, ele vai jogar a `.class` em uma pasta temporária para ser executada.

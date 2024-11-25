@@ -3,7 +3,7 @@
 * Usar `printf` para formatar uma variável no print.
   * E usar o `%` para dizer onde a variável vai ser colocada.
     * É preciso especificar o tipo da variável, sendo `%s` para string, `%i` para int, etc.
-      * Porém, ao fazer testes, notei que só se usa os númericos quando é feito algum tipo de formatação no valor em si, pois de resto, usar eles como string.
+      * Porém, ao fazer testes, notei que só se usa os numéricos quando é feito algum tipo de formatação no valor em si, pois de resto, usar eles como string.
 * Como no C#, quando temos apenas uma instrução na condição, não precisamos usar chaves `{}`.
 * Podemos usar `else if` nas condições.
 * Ao invés de usar `else if` podemos colocar o `switch`.

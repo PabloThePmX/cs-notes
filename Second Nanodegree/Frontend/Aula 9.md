@@ -11,7 +11,7 @@
 * O HTML fica dentro do JS, chamado de `.jsx`.
   * Os componentes em si são `jsx`, enquanto funções "normais" seriam apenas `js`
 * Todo componente é uma função.
-  * É o seu nome sempre começa com letra maíuscula.
+  * É o seu nome sempre começa com letra maiúscula.
     * Segue o padrão `PascalCase`.
 * Componente sempre retorna HTML.
   * Para retornar um html com mais tags (mais linhas), colocar o `()` com as tags dentro, para dizer que é apenas um return.
@@ -20,7 +20,7 @@
 * Podemos criar vários componentes (funções) no mesmo arquivo.
   * Essa prática é comum.
 * Criar uma pasta dentro do `src`, chamada `components` para armazenar os componentes.
-  * Dentro dela, uma pasta do componente, com seu nome em maíusculo, como `Header`
+  * Dentro dela, uma pasta do componente, com seu nome em maiúsculo, como `Header`
     * E dentro, criar o `index.jsx`.
     * Tudo que for referente a ele, colocar na pasta, como o css do componente.
       * O nome do arquivo css pode ser o nome do componente, para facilitar.

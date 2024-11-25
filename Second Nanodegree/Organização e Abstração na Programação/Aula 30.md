@@ -13,6 +13,7 @@
 
 ### Spring
 * Spring framework e spring boot.
+* Ao criar um projeto spring para web, usar as dependências `spring web` e para auxiliar, o `spring boot DevTools`
 * O `Maven` serve para fazer o build da aplicação e gerenciar as bibliotecas.
   * É um XML.
   * Estilo `npn`
@@ -31,7 +32,7 @@
 * Usar as anotações para definir os métodos também.
   * `@GetMapping` para declarar um método `GET`.
     * Podemos colocar o caminho do endpoint a partir do mapeamento do controller dentro dos parênteses do `GetMapping`.
-      * Ex.: `@GetMapping({"","/"})`, ou seja, funciona com `controllername/` ou `controllername`.
+      * Ex.: `@GetMapping({"","/"})`, ou seja, funciona com `controllerName/` ou `controllerName`.
 
 ### Tipos de API
 * WebService API

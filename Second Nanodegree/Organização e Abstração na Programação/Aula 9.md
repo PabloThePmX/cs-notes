@@ -1,6 +1,6 @@
 # Aula 9
 
-### Paradigamas de Programação
+### Paradigmas de Programação
 * **Imperativos**
   * Procedural
     * Estruturado
@@ -9,7 +9,7 @@
   * Funcional
   * Lógico
 
-### Prcedural
+### Procedural
 * Procedimentos (funções).
 * Controle de fluxo.
 * Variáveis e dados globais.

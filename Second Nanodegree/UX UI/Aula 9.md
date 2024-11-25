@@ -3,7 +3,7 @@
 ### Iteração
 * Feedbacks do usuário.
 * Empresas grandes, tem iteração todo o tempo.
-* Os apliativos devem ter sempre diversas iterações.
+* Os aplicativos devem ter sempre diversas iterações.
 
 ### História da Arte
 * Primitiva

@@ -4,7 +4,7 @@
   * Para chamar os membros de uma classe pai, usa-se o `super`.
     * Pode-se chamar o construtor da classe pai também.
       * Dentro do construtor filho. 
-  * O `super` é usado para chamae métodos e atributos, equanto o `super()` é usado para chamar o construtor.
+  * O `super` é usado para chamar métodos e atributos, enquanto o `super()` é usado para chamar o construtor.
 
 ### Classe abstrata
   * É uma classe que não pode ser instanciada, mas ela pode ser herdada por outras.
@@ -13,7 +13,7 @@
     * E interfaces não podem ter atributos (campos) também.
     * Mas dentro da classe abstrata, podemos ter métodos abstratos também.
       * Que não terão implementação, apenas a assinatura.
-        * Será obrigatório a implmentação desse método nas classes filhas.
+        * Será obrigatório a implementação desse método nas classes filhas.
           * Usar o `@Override` para implementar na classe filha.
 ### `Final`
   * Para bloquear heranças de uma classe (ela ser a classe final), colocar `final`, `public final class NovaClasse {}`.

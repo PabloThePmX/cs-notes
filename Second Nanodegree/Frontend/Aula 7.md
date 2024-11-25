@@ -4,7 +4,7 @@
 ### HTML
 * HTML é a estrutura.
 * `Index` é a página inicial, como um main.
-* A estrutura basica do HTMl é:
+* A estrutura básica do HTMl é:
   * `<!DOCTYPE html>`
   * `<html>`
     * `<head>`

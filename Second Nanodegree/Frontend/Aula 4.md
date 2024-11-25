@@ -8,7 +8,7 @@
 * AMP do Google para deixar mais performático.
   * Mas está caindo em desuso.
 * A porcentagem é sempre relativo a aquilo que o objeto está "dentro".
-* Fontes são pesadas, por cada caracter é um símbolo.
+* Fontes são pesadas, por cada carácter é um símbolo.
 * Us
 
 ### Tipos de Escrita de CSS
@@ -19,7 +19,7 @@
     * Não carrega tão rápido.
 * ### Externo
   * É o recomendado.
-  * Ele fica sempre no início do cóigo para que o navegador veja e faça a requisição do estilo logo ao entrar na tela.
+  * Ele fica sempre no início do código para que o navegador veja e faça a requisição do estilo logo ao entrar na tela.
 * ### Inline
   * Não muito recomendada.
   * Usar o `style` na tag.

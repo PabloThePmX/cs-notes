@@ -2,7 +2,7 @@
 
 ### Escopo de Projeto
 * **Escopo Fechado**
-  * Passo a passo claro e decrito.
+  * Passo a passo claro e descrito.
   * Mais fácil.
   * Requisitos claros.
 * **Escopo Aberto**

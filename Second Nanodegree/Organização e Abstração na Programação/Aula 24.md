@@ -28,6 +28,6 @@
       * Ex.: Um time é composto por jogadores.
     * Usado para tipos de atributos/propriedades. 
     * Maior parte das classes do sistemas são de composição. 
-  * **Agregação**: Parecido com composição, flecha lisa com diamente ABERTO, usado quando é algo que vai agregar na classe, ou seja, pode funcionar fora dela.
+  * **Agregação**: Parecido com composição, flecha lisa com diamante ABERTO, usado quando é algo que vai agregar na classe, ou seja, pode funcionar fora dela.
     * Pode ou não precisar usar ela.
 * Fazer o diagrama de classes apenas nas partes mais importantes do programa.

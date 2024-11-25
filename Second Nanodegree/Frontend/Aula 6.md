@@ -1,7 +1,7 @@
 # Aula 6
 
 ### JS
-* Usar `prompt` para spçicitar valores do usuário.
+* Usar `prompt` para solicitar valores do usuário.
   * Ex.: `let valor = prompt("diga os valores")`
 * O `for` é igual como em outros:
   * `for(inicialização; condição; atualização) {}`
@@ -12,7 +12,7 @@
 * Para declarar um array, vamos colocar `const colecao = ["valor1", "valor2"]`
 * Matriz = "array de array" (ou array multidimensional).
 * Formas de iterar um array:
-  * `foreach`, novoarray.foreach()
+  * `foreach`, novoArray.foreach()
   * `map`
   * `for` (preferencial para usar em processos seletivos, por causa da complexidade)
 * Estudar mais sobre complexidade de código.

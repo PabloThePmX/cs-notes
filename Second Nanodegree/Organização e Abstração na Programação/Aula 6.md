@@ -7,7 +7,7 @@
 
 ### Chave Estrangeira
 * Vai sempre usar o código da outra tabela, evitando assim ter campos com valores muito grandes.
-  * Pois ao invés de armazenar um nome completo por exeplo, vai salvar apenas a chave primária.
+  * Pois ao invés de armazenar um nome completo por exemplo, vai salvar apenas a chave primária.
 
 ### Chave Alternativa
 * Chave Alternativa (alternate key ou candidate key): É como fosse uma chave "alternativa" para a primaria.

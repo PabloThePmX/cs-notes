@@ -11,7 +11,7 @@
 * Mapear os relacionamentos das entidades.
   * Um para um, um para muitos e muitos para muitos (teoricamente não deveria existir, é uma anomalia).
 * Pensar no desempenho.
-  * Indíces, particionamento de tabelas, etc.
+  * Indices, particionamento de tabelas, etc.
 * Documentar as decisões tomadas para criar o modelo.
 * Padronização dos nomes, colunas e restrições.
   

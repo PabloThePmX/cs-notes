@@ -1,6 +1,6 @@
 # Aula 10
 
-### Enapsulamento
+### Encapsulamento
 * A prática de ocultar detalhes internos
 * Na maioria das linguagens isso é feito usando os modificadores de classe:
   * `public`

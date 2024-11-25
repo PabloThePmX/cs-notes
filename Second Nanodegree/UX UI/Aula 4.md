@@ -22,5 +22,5 @@
       * Região Comum
         * Separar as informações por regiões.
       * Simetria
-        * Balançear as informações, como um menu com uma logo bem no meio, e não MEIO pro canto (desiquilibrado).
+        * Balancear as informações, como um menu com uma logo bem no meio, e não MEIO pro canto (desequilibrado).
         * Compensar as cores, deixando a paleta de cores equilibrada.
