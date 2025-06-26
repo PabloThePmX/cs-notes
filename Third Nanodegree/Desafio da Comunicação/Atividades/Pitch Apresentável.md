@@ -1,0 +1,13 @@
+<div style="text-align: right">Pablo Sarturi</div>
+
+# Pitch
+
+Me chamo Pablo Henrique Strücker Sarturi, tenho 25 anos e atualmente estou no 3º semestre de Ciência da Computação na Atitus Educação, em Passo Fundo. A computação sempre fez parte da minha vida, onde desde muito cedo tive curiosidade e interesse pela área. Apesar disso, durante o ensino médio, por um tempo hesitei em seguir esse caminho por acreditar que talvez não conseguisse acompanhar o raciocínio lógico exigido, visto que já tinha uma certa experiência acadêmica com tecnologia, visto que meu ensino médio foi integrado ao curso técnico em manutenção e suporte em informática.
+
+Por um tempo, cogitei cursar Relações Internacionais, especialmente após um intercâmbio de longa duração que fiz na Itália durante o meu ensino médio. No entanto, percebi que aquilo não era realmente o que eu desejava. Portanto, acabei optando por Automação Industrial, curso no qual me formei após três anos e meio. Depois disso, decidi finalmente entrar para a Ciência da Computação, mudando de cidade para encarar esse novo desafio.
+
+Minha motivação na área é clara: gosto da liberdade criativa, da lógica envolvida na resolução de problemas e da satisfação de ver soluções que ajudei a construir fazendo diferença na vida de outras pessoas. Já atuo profissionalmente na área há quase cinco anos. Comecei como estagiário em desenvolvimento de software, utilizando GeneXus, uma linguagem low-code que me acompanhou por cerca de três anos. Em 2022, iniciei minha transição para o C#, linguagem com a qual trabalho exclusivamente desde 2024.
+
+No início, fui responsável por um BI web que integra o ERP da empresa, mas atualmente, trabalho no desenvolvimento de DLLs de apoio ao ERP, ajustes (com foco em performance e estabilidade) em uma ferramenta para geração de relatórios, além de criar novas implementações e correções em um plugin CAD para exportação de estruturas. Nesse meio tempo também desenvolvi habilidades essenciais como colaboração entre equipes e comunicação clara com times menos técnicos.
+
+Hoje, minha preferência é pelo back-end, além das ferramentas do .NET, busco me aprimorar constantemente em Angular para atuar como desenvolvedor fullstack quando necessário, aprendendo com projetos práticos e estudos. Meu foco atual está em evoluir tecnicamente e entregar o melhor resultado possível no meu trabalho, e quem sabe futuramente, subir alguns degraus em minha carreira.
