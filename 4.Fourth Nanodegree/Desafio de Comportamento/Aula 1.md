@@ -4,7 +4,6 @@
 * Inteligencia emocional: Autoconhecimento -> Controle Emocional -> Automotivação -> Reconhecimento das emoções nos outros -> TEM MAIS UM AQUI
 * Challenge based learning.
 * Qual é o meu desafio do comportamento?
-  * 
 * Forma e conteúdo (qualidade).
   * A forma define o conteúdo.
 * Como eu interpreto a realidade?
