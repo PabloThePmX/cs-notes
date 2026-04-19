@@ -1,0 +1,3 @@
+Mário Belen e Pablo Sarturi
+
+Inicialmente, ambas as threads são iniciadas. A thread 1 adquire o lock das contas de origem e destino para garantir a atomicidade da operação. No entanto, a thread 2, que executa em paralelo, tenta realizar o mesmo procedimento. Como ambas estão concorrendo pelos mesmos recursos, cada uma pode acabar aguardando a liberação do lock mantido pela outra, resultando em um deadlock. O uso de sleep serve para introduzir um pequeno atraso, aumentando a probabilidade de que as duas threads tentem adquirir os locks simultaneamente.

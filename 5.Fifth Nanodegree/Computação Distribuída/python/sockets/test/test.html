@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+</head>
+<body>
+    <input type="text" id="editor">
+    <p id="preview"></p>
+
+    <script>
+        const ws = new WebSocket("ws://localhost:8888/ws");
+
+        const textarea = document.getElementById("editor");
+        const preview = document.getElementById("preview");
+
+        let isOpen = false;
+        let debounceTimer = null;
+        let lastSentContent = "";
+
+        // 🔌 Connection lifecycle
+        ws.onopen = () => {
+            console.log("WebSocket connected");
+            isOpen = true;
+        };
+
+        ws.onclose = () => {
+            console.log("WebSocket closed");
+            isOpen = false;
+        };
+
+        ws.onerror = (err) => {
+            console.error("WebSocket error:", err);
+        };
+
+        // 📩 Receiving messages
+        ws.onmessage = (event) => {
+            const data = JSON.parse(event.data);
+
+            if (data.type === "init" || data.type === "update") {
+                // avoid unnecessary overwrite (helps cursor stability)
+                if (textarea.value !== data.content) {
+                    textarea.value = data.content;
+                    preview.innerHTML = marked.parse(data.content);
+                }
+            }
+        };
+
+        // ✍️ Sending updates (debounced)
+        textarea.addEventListener("input", () => {
+            if (!isOpen) return;
+
+            clearTimeout(debounceTimer);
+
+            debounceTimer = setTimeout(() => {
+                const content = textarea.value;
+
+                // avoid sending same content repeatedly
+                if (content === lastSentContent) return;
+
+                if (ws.readyState === WebSocket.OPEN) {
+                    ws.send(JSON.stringify({
+                        type: "update",
+                        content: content
+                    }));
+
+                    lastSentContent = content;
+                }
+            }, 300); // adjust delay if needed
+        });
+    </script>
+</body>
+</html>
