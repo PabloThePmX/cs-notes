@@ -1,0 +1,20 @@
+services:
+  meu-adminer:
+    image: adminer:latest
+    ports:
+      - "8080:8080"
+    networks:
+      - rede-db
+  
+  meu-postgres:
+    image: postgres:15-alpine
+    ports:
+      - "5432:5432"
+    environment:
+      POSTGRES-PASSWORD=postgres
+    networks:
+      - rede-db
+
+newtworks:
+  rede-db
+
