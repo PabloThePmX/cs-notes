@@ -1,0 +1,29 @@
+version: '4.0'
+services:
+  db:
+    image: postgres:15-alpine
+    environment:
+      POSTGRES_PASSWORD: postgres
+    networks:
+      - interna
+
+  api:
+    build: ./api
+    environment:
+      DATABASE_URL: postgres://postgres:postgres@db:5432/postgres
+    ports:
+      - "8000:8000"
+    depends_on:
+      - db
+    networks:
+      - interna
+
+  adminer:
+    image: adminer:latest
+    ports:
+      - "8080:8080"
+    networks:
+      - interna
+
+networks:
+  interna:

@@ -11,10 +11,9 @@ services:
     ports:
       - "5432:5432"
     environment:
-      POSTGRES-PASSWORD=postgres
+      POSTGRES_PASSWORD: postgres
     networks:
       - rede-db
 
-newtworks:
-  rede-db
-
+networks:
+  rede-db:

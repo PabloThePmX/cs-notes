@@ -1,0 +1,21 @@
+version: '3.8'
+services:
+  banco:
+    image: postgres:15-alpine
+    env_file:
+      - .env.dev
+    environment:
+      POSTGRES_DB: producao
+
+  api:
+    build: ./api
+    env_file:
+      - .env.dev
+    environment:
+      DATABASE_URL: postgres://${POSTGRES_USER}:${POSTGRES_PASSWORD}@banco:5432/producao
+      SECRET_KEY: ${SECRET_KEY}
+      DEBUG: "${DEBUG}"
+    ports:
+      - "8000:8000"
+    depends_on:
+      - banco
