@@ -1,0 +1,599 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Estudo: Gestão de Projetos</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=DotGothic16&family=Shippori+Mincho:wght@500;700;800&family=Zen+Maru+Gothic:wght@400;500;700&display=swap" rel="stylesheet">
+<style>
+/* ===== Tóquio, anos 2000, calmaria =====
+   dia: papel washi, vermelhão de torii, matcha, sakura
+   noite: índigo de Shibuya com brilho rosa e ciano */
+:root{
+  --font-body:"Zen Maru Gothic","Hiragino Maru Gothic ProN","Yu Gothic UI","Segoe UI",system-ui,sans-serif;
+  --font-head:"Shippori Mincho","Hiragino Mincho ProN","Yu Mincho",Georgia,serif;
+  --font-pixel:"DotGothic16","MS Gothic",ui-monospace,Consolas,monospace;
+  --bg:#f6efe1; --surface:#fffbf1; --surface2:#f0e6d1; --text:#33304a; --muted:#7b7391; --border:#ddd0b6;
+  --ink:#4b4568;
+  --accent:#e0644d; --accent-soft:#fbe4dc; --accent-text:#fffaf3;
+  --sky:#bcd8e2; --sakura:#f5ccd3; --matcha:#a8c294;
+  --good:#5b8a4c; --good-soft:#e2edd3; --bad:#c04f5d; --bad-soft:#f8dde0; --warn:#b9812a; --warn-soft:#f8ebcf;
+  --sun:rgba(240,132,110,.30); --glow2:rgba(188,216,226,.55); --skyline:#cdbfa5; --skyline2:#e3d8c0;
+  --shadow:0 2px 0 rgba(75,69,104,.08),0 12px 28px -14px rgba(75,69,104,.30);
+  --radius:18px;
+}
+@media (prefers-color-scheme:dark){
+  :root:not([data-theme="light"]){
+    --bg:#16152e; --surface:#211f42; --surface2:#2a2858; --text:#ece7fa; --muted:#a9a3cf; --border:#3b3870;
+    --ink:#a79fe8;
+    --accent:#ff8fb7; --accent-soft:#3d2352; --accent-text:#1b1033;
+    --sky:#7fd6e6; --sakura:#ff8fb7; --matcha:#8be0b0;
+    --good:#8be0b0; --good-soft:#173b35; --bad:#ff8a9b; --bad-soft:#47202f; --warn:#ffcc7a; --warn-soft:#45391f;
+    --sun:rgba(255,143,183,.22); --glow2:rgba(127,214,230,.16); --skyline:#2a2858; --skyline2:#211f48;
+    --shadow:0 2px 0 rgba(0,0,0,.25),0 14px 30px -14px rgba(0,0,0,.65);
+  }
+}
+:root[data-theme="dark"]{
+  --bg:#16152e; --surface:#211f42; --surface2:#2a2858; --text:#ece7fa; --muted:#a9a3cf; --border:#3b3870;
+  --ink:#a79fe8;
+  --accent:#ff8fb7; --accent-soft:#3d2352; --accent-text:#1b1033;
+  --sky:#7fd6e6; --sakura:#ff8fb7; --matcha:#8be0b0;
+  --good:#8be0b0; --good-soft:#173b35; --bad:#ff8a9b; --bad-soft:#47202f; --warn:#ffcc7a; --warn-soft:#45391f;
+  --sun:rgba(255,143,183,.22); --glow2:rgba(127,214,230,.16); --skyline:#2a2858; --skyline2:#211f48;
+  --shadow:0 2px 0 rgba(0,0,0,.25),0 14px 30px -14px rgba(0,0,0,.65);
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{margin:0;color:var(--text);font:16.5px/1.7 var(--font-body);min-height:100vh;
+  background:
+    radial-gradient(circle at 88% -6%,var(--sun) 0,transparent 34%),
+    radial-gradient(circle at -5% 30%,var(--glow2) 0,transparent 32%),
+    radial-gradient(color-mix(in srgb,var(--ink) 9%,transparent) 1px,transparent 1.4px) 0 0/22px 22px,
+    var(--bg);
+  background-attachment:fixed}
+button,select{font:inherit;color:inherit}
+button{cursor:pointer}
+:focus-visible{outline:3px dashed var(--accent);outline-offset:3px}
+::selection{background:var(--sakura);color:#33304a}
+
+/* skyline decorativo */
+.skyline{position:fixed;left:0;right:0;bottom:0;height:150px;z-index:0;pointer-events:none;opacity:.85}
+.skyline svg{width:100%;height:100%;display:block}
+.skyline .a{fill:var(--skyline)} .skyline .b{fill:var(--skyline2)}
+.skyline .t{fill:var(--accent);opacity:.8}
+.skyline .w{fill:var(--bg);opacity:.55}
+
+/* topo */
+header{position:sticky;top:0;z-index:20;background:color-mix(in srgb,var(--bg) 82%,transparent);backdrop-filter:blur(12px);border-bottom:2px dashed color-mix(in srgb,var(--ink) 35%,transparent)}
+.bar{max-width:1100px;margin:0 auto;padding:10px 18px;display:flex;align-items:center;gap:16px;flex-wrap:wrap}
+.brand{display:flex;align-items:center;gap:12px;white-space:nowrap}
+.brand .seal{width:42px;height:42px;border-radius:50%;background:var(--accent);color:var(--accent-text);display:grid;place-items:center;font:700 20px var(--font-head);box-shadow:0 0 0 3px var(--surface),0 0 0 5px var(--accent)}
+.brand b{display:block;font:800 19px/1.1 var(--font-head);letter-spacing:.01em}
+.brand small{display:block;font:12px/1.2 var(--font-pixel);color:var(--muted);letter-spacing:.08em}
+nav.tabs{display:flex;gap:6px;flex:1;overflow-x:auto;padding:6px 4px 8px}
+.tab{display:flex;align-items:center;gap:8px;border:2px solid transparent;background:transparent;padding:7px 15px 7px 8px;border-radius:999px;color:var(--muted);font-weight:700;white-space:nowrap;transition:.15s}
+.tab .jp{width:28px;height:28px;border-radius:50%;display:grid;place-items:center;background:var(--surface2);font:15px var(--font-head);color:var(--ink)}
+.tab:hover{background:var(--surface);color:var(--text)}
+.tab[aria-selected="true"]{background:var(--surface);border-color:var(--ink);color:var(--text);box-shadow:0 3px 0 var(--ink)}
+.tab[aria-selected="true"] .jp{background:var(--accent);color:var(--accent-text)}
+.icon-btn{border:2px solid var(--ink);background:var(--surface);border-radius:50%;width:40px;height:40px;box-shadow:0 3px 0 var(--ink);font-size:17px}
+.icon-btn:active{transform:translateY(3px);box-shadow:none}
+
+main{position:relative;z-index:1;max-width:1100px;margin:0 auto;padding:26px 18px 190px}
+.view{display:none}.view.active{display:block;animation:fade .35s ease}
+@keyframes fade{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:none}}
+h2.page{margin:0 0 4px;font:800 32px/1.2 var(--font-head);letter-spacing:.01em}
+h2.page::before{content:attr(data-jp);display:block;font:13px var(--font-pixel);letter-spacing:.2em;color:var(--accent);margin-bottom:2px}
+.sub{color:var(--muted);margin:0 0 20px;max-width:62ch}
+
+.card{background:var(--surface);border:2px solid var(--ink);border-radius:var(--radius);box-shadow:0 5px 0 color-mix(in srgb,var(--ink) 85%,transparent),var(--shadow)}
+.btn{border:2px solid var(--ink);background:var(--surface);padding:8px 18px;border-radius:999px;font-weight:700;box-shadow:0 3px 0 var(--ink);transition:transform .08s,box-shadow .08s,background .15s}
+.btn:hover:not([disabled]){background:var(--surface2);transform:translateY(-1px);box-shadow:0 4px 0 var(--ink)}
+.btn:active:not([disabled]){transform:translateY(3px);box-shadow:0 0 0 var(--ink)}
+.btn.primary{background:var(--accent);color:var(--accent-text)}
+.btn.primary:hover:not([disabled]){background:var(--accent);filter:brightness(1.06)}
+.btn.good{background:var(--good-soft);color:var(--good)}
+.btn.bad{background:var(--bad-soft);color:var(--bad)}
+.btn[disabled]{opacity:.45;cursor:not-allowed;box-shadow:0 2px 0 var(--ink)}
+.row{display:flex;gap:12px;flex-wrap:wrap;align-items:center}
+.controls{display:flex;gap:14px;flex-wrap:wrap;align-items:end;margin-bottom:20px}
+.controls label{display:flex;flex-direction:column;font:12px var(--font-pixel);color:var(--muted);letter-spacing:.14em;text-transform:uppercase;gap:5px}
+.controls label.inline{flex-direction:row;align-items:center;text-transform:none;font:500 15px var(--font-body);letter-spacing:0;gap:8px;padding-bottom:9px;color:var(--text)}
+input[type=checkbox]{accent-color:var(--accent);width:18px;height:18px}
+select{background:var(--surface);border:2px solid var(--ink);border-radius:12px;padding:9px 12px;min-width:180px;max-width:100%;box-shadow:0 3px 0 var(--ink)}
+.progress{height:12px;background:var(--surface2);border:2px solid var(--ink);border-radius:99px;overflow:hidden}
+.progress>i{display:block;height:100%;background:repeating-linear-gradient(135deg,var(--accent) 0 8px,color-mix(in srgb,var(--accent) 80%,#fff) 8px 16px);transition:width .4s}
+.progress.good>i{background:repeating-linear-gradient(135deg,var(--good) 0 8px,color-mix(in srgb,var(--good) 80%,#fff) 8px 16px)}
+.kbd{font:12px var(--font-pixel);border:1.5px solid var(--ink);background:var(--surface2);border-radius:6px;padding:0 6px;color:var(--muted)}
+
+/* resumo */
+.resumo-grid{display:grid;grid-template-columns:260px 1fr;gap:24px;align-items:start}
+.side{position:sticky;top:92px;padding:12px;display:flex;flex-direction:column;gap:3px}
+.side::before{content:"目次 · ÍNDICE";font:12px var(--font-pixel);letter-spacing:.14em;color:var(--accent);padding:2px 10px 8px}
+.side button{display:flex;gap:11px;align-items:center;text-align:left;border:2px solid transparent;background:transparent;padding:8px 10px;border-radius:14px;color:var(--text)}
+.side button:hover{background:var(--surface2)}
+.side button[aria-current="true"]{background:var(--accent-soft);border-color:var(--accent);font-weight:700}
+.side .n{flex:none;width:30px;height:30px;border-radius:50%;background:var(--surface2);border:2px solid var(--ink);display:grid;place-items:center;font:700 14px var(--font-head)}
+.side .done .n{background:var(--good);border-color:var(--good);color:var(--surface)}
+.side small{display:block;color:var(--muted);font-weight:400;line-height:1.3;font-size:13px}
+.article{padding:30px 36px;position:relative}
+.article::before{content:"";position:absolute;top:-13px;left:34px;width:96px;height:24px;background:color-mix(in srgb,var(--sakura) 80%,transparent);transform:rotate(-2.5deg);border-radius:3px;box-shadow:0 1px 3px rgba(0,0,0,.12);opacity:.95}
+.article h1{font:800 32px/1.25 var(--font-head);margin:6px 0 8px;letter-spacing:.01em}
+.article h2{font:800 23px/1.3 var(--font-head);margin:34px 0 10px;padding-top:10px;border-top:2px dashed var(--border)}
+.article h2::before{content:"◆ ";color:var(--accent);font-size:.7em;vertical-align:.12em}
+.article h3{font:700 18px var(--font-head);margin:24px 0 6px;color:var(--accent)}
+.article p,.article li{max-width:72ch}
+.article li::marker{color:var(--accent)}
+.article strong{font-weight:700;background:linear-gradient(transparent 62%,color-mix(in srgb,var(--sakura) 55%,transparent) 62%)}
+.article table{border-collapse:separate;border-spacing:0;width:100%;font-size:15px;border:2px solid var(--ink);border-radius:14px;overflow:hidden}
+.article th,.article td{border-bottom:1px solid var(--border);border-right:1px solid var(--border);padding:9px 12px;text-align:left;vertical-align:top}
+.article th:last-child,.article td:last-child{border-right:0}
+.article tr:last-child td{border-bottom:0}
+.article th{background:var(--accent-soft);font:700 14px var(--font-head)}
+.article tbody tr:nth-child(even){background:color-mix(in srgb,var(--surface2) 55%,transparent)}
+.table-wrap{overflow-x:auto;margin:14px 0}
+.article pre{background:var(--surface2);border:2px solid var(--border);padding:16px 18px;border-radius:14px;overflow-x:auto;font-size:14px;line-height:1.55}
+.article code{font-family:var(--font-pixel);font-size:.95em;background:var(--surface2);padding:1px 6px;border-radius:6px}
+.article pre code{background:none;padding:0}
+.article blockquote{margin:16px 0;padding:10px 18px;border:2px dashed var(--border);background:var(--surface2);border-radius:14px}
+.article blockquote p{margin:5px 0}
+.article blockquote.tip{border:2px solid var(--warn);background:var(--warn-soft);position:relative}
+.article blockquote.tip::before{content:"ひとこと";position:absolute;top:-12px;right:14px;background:var(--warn);color:var(--surface);font:12px var(--font-pixel);padding:1px 10px;border-radius:99px;letter-spacing:.1em}
+.article hr{border:0;border-top:2px dashed var(--border)}
+.article-actions{display:flex;gap:10px;flex-wrap:wrap;margin:16px 0 6px}
+.pager{display:flex;justify-content:space-between;gap:10px;margin-top:34px;padding-top:20px;border-top:2px dashed var(--border)}
+
+/* flashcards */
+.fc-wrap{max-width:740px;margin:0 auto}
+.fc-meta{display:flex;justify-content:space-between;font:13px var(--font-pixel);letter-spacing:.06em;color:var(--muted);margin:8px 2px}
+.flash{min-height:320px;padding:34px;display:flex;flex-direction:column;justify-content:center;text-align:center;cursor:pointer;position:relative;user-select:none;margin:22px 0 20px;transform:rotate(-.4deg);background:var(--surface)}
+.flash::before{content:"";position:absolute;top:-14px;left:50%;width:110px;height:26px;margin-left:-55px;background:color-mix(in srgb,var(--sky) 75%,transparent);transform:rotate(1.8deg);border-radius:3px;box-shadow:0 1px 3px rgba(0,0,0,.12)}
+.flash .tag{position:absolute;top:18px;left:22px;font:12px var(--font-pixel);letter-spacing:.14em;text-transform:uppercase;color:var(--muted)}
+.flash .state{position:absolute;top:14px;right:18px;font:12px var(--font-pixel);padding:2px 12px;border-radius:99px;border:1.5px solid currentColor}
+.flash .state.known{background:var(--good-soft);color:var(--good)}
+.flash .state.learn{background:var(--warn-soft);color:var(--warn)}
+.flash .face{font:700 25px/1.45 var(--font-head)}
+.flash.back{background:color-mix(in srgb,var(--matcha) 22%,var(--surface));transform:rotate(.4deg)}
+.flash.back::before{background:color-mix(in srgb,var(--sakura) 80%,transparent)}
+.flash.back .face{font:500 18px/1.65 var(--font-body);text-align:left}
+.flash.back .face p{margin:.4em 0}
+.flash.back .face strong{background:linear-gradient(transparent 62%,color-mix(in srgb,var(--sakura) 60%,transparent) 62%)}
+.flash .hint{position:absolute;bottom:14px;left:0;right:0;font:13px var(--font-pixel);letter-spacing:.06em;color:var(--muted)}
+.flash.flip{animation:flip .38s cubic-bezier(.2,.8,.3,1)}
+@keyframes flip{0%{transform:rotateX(75deg) scale(.96);opacity:.1}100%{opacity:1}}
+.fc-actions{display:grid;grid-template-columns:1fr 1fr 1fr;gap:14px}
+.fc-nav{display:flex;justify-content:space-between;margin-top:16px}
+.end-card{padding:38px;text-align:center;margin-top:16px}
+.big{font:800 54px/1.1 var(--font-head);letter-spacing:-.01em;color:var(--accent)}
+
+/* quiz */
+.setup{padding:28px;max-width:660px}
+.q-top{display:flex;justify-content:space-between;align-items:center;color:var(--muted);font:13px var(--font-pixel);letter-spacing:.08em;margin-bottom:8px}
+.q-card{padding:30px;max-width:760px;margin:0 auto}
+.q-card h3{margin:0 0 22px;font:700 22px/1.45 var(--font-head)}
+.opts{display:flex;flex-direction:column;gap:12px}
+.opt{display:flex;gap:14px;align-items:center;text-align:left;width:100%;padding:12px 16px;border-radius:16px;border:2px solid var(--border);background:var(--surface);transition:.12s}
+.opt:hover:not([disabled]){border-color:var(--ink);background:var(--accent-soft);transform:translateX(4px)}
+.opt .k{flex:none;width:34px;height:34px;border-radius:50%;background:var(--surface2);border:2px solid var(--ink);display:grid;place-items:center;font:700 16px var(--font-head)}
+.opt.right{border-color:var(--good);background:var(--good-soft)}
+.opt.right .k{background:var(--good);border-color:var(--good);color:var(--surface)}
+.opt.wrong{border-color:var(--bad);background:var(--bad-soft)}
+.opt.wrong .k{background:var(--bad);border-color:var(--bad);color:var(--surface)}
+.opt[disabled]{cursor:default;color:var(--text)}
+.opt.dim{opacity:.55}
+.explain{margin-top:18px;padding:14px 18px;border-radius:16px;background:var(--surface2);border:2px dashed var(--ink)}
+.explain.ok{border-color:var(--good)}.explain.no{border-color:var(--bad)}
+.explain b.verdict{display:block;margin-bottom:2px;font:800 17px var(--font-head)}
+.result-list{margin:18px 0 0;padding:0;list-style:none;text-align:left;display:flex;flex-direction:column;gap:12px}
+.result-list li{padding:14px 16px;border:2px solid var(--border);border-radius:14px;background:var(--surface)}
+
+/* progresso */
+.stats{display:grid;grid-template-columns:repeat(auto-fit,minmax(210px,1fr));gap:18px;margin-bottom:24px}
+.stat{padding:20px 22px}
+.stat .v{font:800 36px/1.1 var(--font-head);color:var(--accent)}
+.stat .l{color:var(--muted);font-size:14px}
+.ptable{width:100%;border-collapse:collapse}
+.ptable th,.ptable td{padding:12px 16px;text-align:left;border-bottom:2px dashed var(--border);font-size:15px}
+.ptable th{font:12px var(--font-pixel);letter-spacing:.12em;text-transform:uppercase;color:var(--muted)}
+.ptable tr:last-child td{border-bottom:0}
+.ptable .progress{min-width:100px;margin-bottom:4px}
+.extra-tag{display:inline-block;font:11px var(--font-pixel);letter-spacing:.1em;background:var(--sakura);color:#33304a;padding:1px 9px;border-radius:99px;border:1.5px solid #33304a;margin-left:8px;vertical-align:middle;text-transform:uppercase}
+.extra-zone{margin-top:22px;padding:6px 22px 14px;border-radius:18px;border:2px dashed var(--accent);background:color-mix(in srgb,var(--accent-soft) 45%,transparent)}
+.extra-zone>h2.extra{border-top:0;margin-top:14px}
+.extra-zone .table-wrap table{background:var(--surface)}
+.foot{margin-top:40px;text-align:center;font:14px var(--font-pixel);letter-spacing:.12em;color:var(--muted)}
+
+@media (max-width:820px){
+  .resumo-grid{grid-template-columns:1fr}
+  .side{position:static;flex-direction:row;overflow-x:auto;padding:10px}
+  .side::before,.side small{display:none}
+  .side button{flex:none}
+  .article{padding:26px 18px}
+  .flash{padding:28px 16px;min-height:280px}.flash .face{font-size:21px}
+  .fc-actions{grid-template-columns:1fr}
+  .kbd{display:none}
+  .brand small{display:none}
+  .skyline{height:90px}
+  main{padding-bottom:120px}
+}
+@media (prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}html{scroll-behavior:auto}}
+</style>
+</head>
+<body>
+<div class="skyline" aria-hidden="true">
+<svg viewBox="0 0 1200 150" preserveAspectRatio="xMidYMax slice">
+  <polygon class="b" points="20,150 235,38 450,150"/>
+  <polygon class="w" points="190,62 235,38 280,62 258,72 235,64 212,75"/>
+  <g class="a">
+    <rect x="450" y="96" width="40" height="54"/><rect x="494" y="68" width="34" height="82"/><rect x="532" y="106" width="50" height="44"/>
+    <rect x="586" y="84" width="30" height="66"/><rect x="620" y="112" width="46" height="38"/><rect x="670" y="58" width="36" height="92"/>
+    <rect x="710" y="100" width="44" height="50"/><rect x="758" y="80" width="32" height="70"/><rect x="794" y="114" width="48" height="36"/>
+    <rect x="1000" y="90" width="38" height="60"/><rect x="1042" y="64" width="34" height="86"/><rect x="1080" y="104" width="52" height="46"/>
+    <rect x="1136" y="78" width="30" height="72"/><rect x="1170" y="110" width="40" height="40"/>
+  </g>
+  <g class="b"><rect x="846" y="108" width="40" height="42"/><rect x="972" y="112" width="34" height="38"/></g>
+  <path class="t" d="M930 6 L943 72 L964 150 L947 150 L930 102 L913 150 L896 150 L917 72 Z"/>
+  <rect class="t" x="915" y="70" width="30" height="6"/><rect class="t" x="928.5" y="0" width="3" height="14"/>
+</svg></div>
+<header>
+  <div class="bar">
+    <div class="brand"><span class="seal" aria-hidden="true">学</span><div><b>Gestão de Projetos</b><small>勉強 · HORA DE ESTUDAR</small></div></div>
+    <nav class="tabs" role="tablist" aria-label="Seções">
+      <button class="tab" role="tab" data-view="resumo"><span class="jp" aria-hidden="true">読</span>Resumo</button>
+      <button class="tab" role="tab" data-view="cards"><span class="jp" aria-hidden="true">札</span>Flashcards</button>
+      <button class="tab" role="tab" data-view="quiz"><span class="jp" aria-hidden="true">試</span>Quiz</button>
+      <button class="tab" role="tab" data-view="progresso"><span class="jp" aria-hidden="true">歩</span>Progresso</button>
+    </nav>
+    <button class="icon-btn" id="theme" title="Alternar tema claro/escuro" aria-label="Alternar tema">🌓</button>
+  </div>
+</header>
+
+<main>
+  <section class="view" id="v-resumo">
+    <div class="resumo-grid">
+      <aside class="card side" id="side" aria-label="Aulas"></aside>
+      <article class="card article" id="article"></article>
+    </div>
+  </section>
+
+  <section class="view" id="v-cards">
+    <h2 class="page" data-jp="札 · CARTÕES">Flashcards</h2>
+    <p class="sub">Tente responder de cabeça, vire o cartão e diga se acertou. Os que você marcar "revisar" voltam depois.</p>
+    <div class="controls">
+      <label>Aula <select id="fc-aula"></select></label>
+      <label>Mostrar <select id="fc-mode">
+        <option value="all">Todos</option>
+        <option value="pending">Ainda não sei</option>
+        <option value="learn">Marcados para revisar</option>
+      </select></label>
+      <label>Conteúdo <select id="fc-src">
+        <option value="all">Tudo</option>
+        <option value="class">Visto em aula</option>
+        <option value="extra">➕ Extras para a prova</option>
+      </select></label>
+      <label class="inline"><input type="checkbox" id="fc-shuffle"> Embaralhar</label>
+    </div>
+    <div class="fc-wrap" id="fc"></div>
+  </section>
+
+  <section class="view" id="v-quiz">
+    <h2 class="page" data-jp="試験 · DESAFIO">Quiz</h2>
+    <p class="sub">Múltipla escolha com explicação imediata. Cada acerto e erro fica registrado no seu progresso.</p>
+    <div id="quiz"></div>
+  </section>
+
+  <section class="view" id="v-progresso">
+    <h2 class="page" data-jp="歩み · JORNADA">Seu progresso</h2>
+    <p class="sub">Salvo neste navegador. Nada sai do seu computador.</p>
+    <div id="prog"></div>
+  </section>
+  <p class="foot">ゆっくり、一歩ずつ · devagar, um passo de cada vez</p>
+</main>
+
+<script>
+const DATA = /*__DATA__*/null;
+
+/* ---------- utilidades ---------- */
+const $ = (s, r = document) => r.querySelector(s);
+const $$ = (s, r = document) => [...r.querySelectorAll(s)];
+const KEY = "gp-estudo-v1";
+let store = { theme: null, read: {}, cards: {}, quiz: {} };
+try { Object.assign(store, JSON.parse(localStorage.getItem(KEY) || "{}")); } catch (e) {}
+const save = () => { try { localStorage.setItem(KEY, JSON.stringify(store)); } catch (e) {} };
+const shuffle = a => { a = [...a]; for (let i = a.length - 1; i > 0; i--) { const j = Math.floor(Math.random() * (i + 1)); [a[i], a[j]] = [a[j], a[i]]; } return a; };
+const pct = (a, b) => b ? Math.round(100 * a / b) : 0;
+const aulaIds = Object.keys(DATA.aulas).map(Number).sort((a, b) => a - b);
+const aulaLabel = n => n === 0 ? "Mapa geral" : `Aula ${n}: ${DATA.aulas[n]}`;
+const aulaOptions = (extra) => `<option value="all">Todas as aulas</option>` + aulaIds.map(n => `<option value="${n}">${aulaLabel(n)}</option>`).join("") + (extra || "");
+const typing = e => /^(INPUT|SELECT|TEXTAREA)$/.test(e.target.tagName);
+
+/* tema */
+function applyTheme() { if (store.theme) document.documentElement.dataset.theme = store.theme; else delete document.documentElement.dataset.theme; }
+$("#theme").onclick = () => {
+  const dark = store.theme ? store.theme === "dark" : matchMedia("(prefers-color-scheme: dark)").matches;
+  store.theme = dark ? "light" : "dark"; applyTheme(); save();
+};
+applyTheme();
+
+/* navegação */
+const views = ["resumo", "cards", "quiz", "progresso"];
+let current = "resumo";
+function go(view) {
+  if (!views.includes(view)) view = "resumo";
+  current = view;
+  $$(".view").forEach(v => v.classList.toggle("active", v.id === "v-" + view));
+  $$(".tab").forEach(t => t.setAttribute("aria-selected", t.dataset.view === view));
+  if (location.hash !== "#" + view) history.replaceState(null, "", "#" + view);
+  if (view === "progresso") renderProgress();
+  if (view === "quiz" && !quizState) renderQuizSetup();
+  window.scrollTo(0, 0);
+}
+$$(".tab").forEach(t => t.onclick = () => go(t.dataset.view));
+
+/* ---------- RESUMO ---------- */
+let curSec = 0;
+function renderSide() {
+  $("#side").innerHTML = DATA.resumo.map((s, i) => `
+    <button data-i="${i}" class="${store.read[s.id] ? "done" : ""}" ${i === curSec ? 'aria-current="true"' : ""}>
+      <span class="n">${store.read[s.id] ? "✓" : (s.id === 0 ? "★" : s.id)}</span>
+      <span>${s.id === 0 ? "Mapa geral" : "Aula " + s.id}<small>${s.id === 0 ? "Visão de cima" : s.title}</small></span>
+    </button>`).join("");
+  $$("#side button").forEach(b => b.onclick = () => { curSec = +b.dataset.i; renderResumo(); window.scrollTo(0, 0); });
+}
+function renderResumo() {
+  const s = DATA.resumo[curSec];
+  const acts = s.id === 0 ? "" : `
+    <div class="article-actions">
+      <button class="btn" data-act="cards">🃏 Flashcards desta aula</button>
+      <button class="btn" data-act="quiz">✅ Quiz desta aula</button>
+      <button class="btn ${store.read[s.id] ? "good" : ""}" data-act="read">${store.read[s.id] ? "✓ Lida (desmarcar)" : "Marcar como lida"}</button>
+    </div>`;
+  const prev = DATA.resumo[curSec - 1], next = DATA.resumo[curSec + 1];
+  $("#article").innerHTML = `<h1>${s.id === 0 ? "Por onde começar" : "Aula " + s.id + ": " + s.title}</h1>${acts}${s.html}
+    <div class="pager">
+      ${prev ? `<button class="btn" data-go="${curSec - 1}">← ${prev.id === 0 ? "Mapa geral" : "Aula " + prev.id}</button>` : "<span></span>"}
+      ${next ? `<button class="btn primary" data-go="${curSec + 1}">Aula ${next.id} →</button>` : "<span></span>"}
+    </div>`;
+  const art = $("#article");
+  $$("table", art).forEach(t => { const w = document.createElement("div"); w.className = "table-wrap"; t.replaceWith(w); w.append(t); });
+  const xh = $$("h2", art).find(h => h.textContent.trim().startsWith("➕"));
+  if (xh) {
+    xh.classList.add("extra");
+    const zone = document.createElement("div"); zone.className = "extra-zone";
+    xh.before(zone); let el = xh;
+    while (el && !(el.classList && el.classList.contains("pager"))) { const nx = el.nextElementSibling; zone.append(el); el = nx; }
+  }
+  $$("blockquote", art).forEach(b => { if (b.textContent.trim().startsWith("💡")) b.classList.add("tip"); });
+  $$("[data-go]", art).forEach(b => b.onclick = () => { curSec = +b.dataset.go; renderResumo(); window.scrollTo(0, 0); });
+  $$("[data-act]", art).forEach(b => b.onclick = () => {
+    if (b.dataset.act === "read") { store.read[s.id] = !store.read[s.id]; save(); renderResumo(); }
+    if (b.dataset.act === "cards") { $("#fc-aula").value = s.id; go("cards"); buildDeck(); }
+    if (b.dataset.act === "quiz") { quizState = null; renderQuizSetup(s.id); go("quiz"); }
+  });
+  renderSide();
+}
+
+/* ---------- FLASHCARDS ---------- */
+let deck = [], di = 0, flipped = false, fcDone = false;
+$("#fc-aula").innerHTML = aulaOptions();
+const srcOk = (x, src) => src === "all" || (src === "extra") === !!x.extra;
+function cardsFor(aula) { const src = $("#fc-src").value; return DATA.cards.filter(c => (aula === "all" || c.aula === +aula) && srcOk(c, src)); }
+function buildDeck() {
+  const aula = $("#fc-aula").value, mode = $("#fc-mode").value;
+  let list = cardsFor(aula);
+  if (mode === "pending") list = list.filter(c => store.cards[c.id] !== "known");
+  if (mode === "learn") list = list.filter(c => store.cards[c.id] === "learn");
+  deck = $("#fc-shuffle").checked ? shuffle(list) : list;
+  di = 0; flipped = false; fcDone = false; renderCard();
+}
+["fc-aula", "fc-mode", "fc-src", "fc-shuffle"].forEach(id => $("#" + id).onchange = buildDeck);
+function renderCard() {
+  const box = $("#fc");
+  const all = cardsFor($("#fc-aula").value);
+  const known = all.filter(c => store.cards[c.id] === "known").length;
+  const learn = all.filter(c => store.cards[c.id] === "learn").length;
+  const bar = `<div class="progress good" title="${known} de ${all.length} dominados"><i style="width:${pct(known, all.length)}%"></i></div>
+    <div class="fc-meta"><span>✓ ${known} sei · ↻ ${learn} revisar · ${all.length - known - learn} novos</span><span>${deck.length ? (fcDone ? deck.length : di + 1) + " / " + deck.length : ""}</span></div>`;
+  if (!deck.length) {
+    box.innerHTML = bar + `<div class="card end-card"><p>Nenhum cartão neste filtro.</p><p class="sub">Mude a aula ou o modo acima.</p></div>`; return;
+  }
+  if (fcDone) {
+    const k = deck.filter(c => store.cards[c.id] === "known").length;
+    box.innerHTML = bar + `<div class="card end-card"><div class="big">${pct(k, deck.length)}%</div>
+      <p>Você marcou <b>${k}</b> de <b>${deck.length}</b> como "sei".</p>
+      <div class="row" style="justify-content:center">
+        <button class="btn" id="fc-again">Recomeçar baralho</button>
+        <button class="btn primary" id="fc-pend">Só os que faltam</button>
+      </div></div>`;
+    $("#fc-again").onclick = buildDeck;
+    $("#fc-pend").onclick = () => { $("#fc-mode").value = "pending"; buildDeck(); };
+    return;
+  }
+  const c = deck[di], st = store.cards[c.id];
+  const stateTag = st ? `<span class="state ${st}">${st === "known" ? "✓ sei" : "↻ revisar"}</span>` : "";
+  box.innerHTML = bar + `
+    <div class="card flash ${flipped ? "back" : ""} flip" id="flash" tabindex="0" role="button" aria-label="Virar cartão">
+      <span class="tag">${flipped ? "Resposta" : "Pergunta"} · Aula ${c.aula}${c.extra ? '<span class="extra-tag">➕ extra</span>' : ""}</span>${stateTag}
+      <div class="face">${flipped ? c.a : c.q}</div>
+      <span class="hint">${flipped ? "" : "Clique ou pressione espaço para ver a resposta"}</span>
+    </div>
+    <div class="fc-actions">
+      <button class="btn bad" id="fc-learn">↻ Revisar <span class="kbd">1</span></button>
+      <button class="btn" id="fc-flip">Virar <span class="kbd">espaço</span></button>
+      <button class="btn good" id="fc-know">✓ Sei <span class="kbd">2</span></button>
+    </div>
+    <div class="fc-nav">
+      <button class="btn" id="fc-prev" ${di === 0 ? "disabled" : ""}>← Anterior</button>
+      <button class="btn" id="fc-skip">Pular →</button>
+    </div>`;
+  $("#flash").onclick = flip; $("#fc-flip").onclick = flip;
+  $("#fc-learn").onclick = () => mark("learn"); $("#fc-know").onclick = () => mark("known");
+  $("#fc-prev").onclick = () => step(-1); $("#fc-skip").onclick = () => step(1);
+}
+function flip() { if (!fcDone && deck.length) { flipped = !flipped; renderCard(); } }
+function mark(s) { if (fcDone || !deck.length) return; store.cards[deck[di].id] = s; save(); step(1); }
+function step(d) {
+  const n = di + d;
+  if (n < 0) return;
+  flipped = false;
+  if (n >= deck.length) fcDone = true; else di = n;
+  renderCard();
+}
+
+/* ---------- QUIZ ---------- */
+let quizState = null;
+function qStats(list) {
+  const seen = list.filter(q => store.quiz[q.id]);
+  const lastOk = seen.filter(q => store.quiz[q.id].last).length;
+  return { total: list.length, seen: seen.length, lastOk, wrong: seen.length - lastOk };
+}
+function renderQuizSetup(aula) {
+  quizState = null;
+  const box = $("#quiz");
+  box.innerHTML = `<div class="card setup">
+    <div class="controls" style="margin:0 0 14px">
+      <label>Aula <select id="qs-aula">${aulaOptions()}</select></label>
+      <label>Conteúdo <select id="qs-src"><option value="all">Tudo</option><option value="class">Visto em aula</option><option value="extra">➕ Extras para a prova</option></select></label>
+      <label>Quantidade <select id="qs-n"><option value="10">10 questões</option><option value="20">20 questões</option><option value="all">Todas</option></select></label>
+    </div>
+    <div class="controls" style="margin:0 0 6px">
+      <label class="inline"><input type="checkbox" id="qs-shuf" checked> Ordem aleatória</label>
+      <label class="inline"><input type="checkbox" id="qs-wrong"> Só as que errei por último</label>
+    </div>
+    <p class="sub" id="qs-info" style="margin:8px 0 16px"></p>
+    <button class="btn primary" id="qs-go">Começar quiz</button>
+  </div>`;
+  if (aula !== undefined) $("#qs-aula").value = aula;
+  const pool = () => {
+    const a = $("#qs-aula").value;
+    let l = DATA.quiz.filter(q => (a === "all" || q.aula === +a) && srcOk(q, $("#qs-src").value));
+    if ($("#qs-wrong").checked) l = l.filter(q => store.quiz[q.id] && !store.quiz[q.id].last);
+    return l;
+  };
+  const info = () => {
+    const a = $("#qs-aula").value, s = qStats(DATA.quiz.filter(q => a === "all" || q.aula === +a));
+    $("#qs-info").textContent = `${pool().length} questões disponíveis · ${s.seen}/${s.total} já respondidas · ${s.wrong} erradas na última tentativa`;
+    $("#qs-go").disabled = !pool().length;
+  };
+  ["qs-aula", "qs-src", "qs-wrong"].forEach(id => $("#" + id).onchange = info); info();
+  $("#qs-go").onclick = () => {
+    let l = pool(); if ($("#qs-shuf").checked) l = shuffle(l);
+    const n = $("#qs-n").value; if (n !== "all") l = l.slice(0, +n);
+    startQuiz(l);
+  };
+}
+function startQuiz(list) { quizState = { list, i: 0, ok: 0, wrong: [], picked: null }; renderQuestion(); }
+function renderQuestion() {
+  const S = quizState, q = S.list[S.i];
+  $("#quiz").innerHTML = `
+    <div class="q-card-wrap" style="max-width:760px;margin:0 auto">
+      <div class="q-top"><span>Questão ${S.i + 1} de ${S.list.length} · Aula ${q.aula}${q.extra ? '<span class="extra-tag">➕ extra</span>' : ""}</span><span>✓ ${S.ok} acertos</span></div>
+      <div class="progress" style="margin-bottom:14px"><i style="width:${pct(S.i, S.list.length)}%"></i></div>
+      <div class="card q-card" style="max-width:none">
+        <h3>${q.q}</h3>
+        <div class="opts">${q.opts.map(o => `<button class="opt" data-k="${o.k}"><span class="k">${o.k}</span><span>${o.t}</span></button>`).join("")}</div>
+        <div id="q-fb"></div>
+      </div>
+      <div class="row" style="justify-content:space-between;margin-top:12px">
+        <button class="btn" id="q-quit">Sair do quiz</button>
+        <span class="kbd">A–D responde · Enter avança</span>
+      </div>
+    </div>`;
+  $$(".opt").forEach(b => b.onclick = () => answer(b.dataset.k));
+  $("#q-quit").onclick = () => { if (confirm("Sair e perder o andamento deste quiz?")) renderQuizSetup(); };
+}
+function answer(k) {
+  const S = quizState; if (!S || S.picked) return;
+  const q = S.list[S.i], ok = k === q.ans; S.picked = k;
+  if (ok) S.ok++; else S.wrong.push({ q, k });
+  const rec = store.quiz[q.id] || { right: 0, wrong: 0 };
+  ok ? rec.right++ : rec.wrong++; rec.last = ok; store.quiz[q.id] = rec; save();
+  $$(".opt").forEach(b => {
+    b.disabled = true;
+    if (b.dataset.k === q.ans) b.classList.add("right");
+    else if (b.dataset.k === k) b.classList.add("wrong");
+    else b.classList.add("dim");
+  });
+  const last = S.i === S.list.length - 1;
+  $("#q-fb").innerHTML = `<div class="explain ${ok ? "ok" : "no"}"><b class="verdict">${ok ? "✅ Correto!" : "❌ Não foi dessa vez. A certa é a " + q.ans + "."}</b>${q.exp}</div>
+    <div class="row" style="justify-content:flex-end;margin-top:14px"><button class="btn primary" id="q-next">${last ? "Ver resultado" : "Próxima →"}</button></div>`;
+  $("#q-next").onclick = nextQ; $("#q-next").focus();
+}
+function nextQ() {
+  const S = quizState; if (!S || !S.picked) return;
+  S.picked = null; S.i++;
+  S.i >= S.list.length ? renderResult() : renderQuestion();
+}
+function renderResult() {
+  const S = quizState, p = pct(S.ok, S.list.length);
+  const msg = p >= 85 ? "Excelente! Domínio." : p >= 65 ? "Bom. Revise os erros abaixo." : p >= 40 ? "Dá para melhorar. Releia o resumo das aulas em que errou." : "Comece pelo resumo e pelos flashcards, depois volte aqui.";
+  $("#quiz").innerHTML = `<div class="card end-card" style="max-width:760px;margin:0 auto">
+    <div class="big">${S.ok} / ${S.list.length}</div><p><b>${p}%</b> · ${msg}</p>
+    <div class="row" style="justify-content:center">
+      ${S.wrong.length ? `<button class="btn primary" id="r-retry">Refazer as ${S.wrong.length} erradas</button>` : ""}
+      <button class="btn" id="r-new">Novo quiz</button>
+    </div>
+    ${S.wrong.length ? `<h3 style="text-align:left;margin:26px 0 0">Para revisar</h3><ul class="result-list">${S.wrong.map(w =>
+      `<li><b>${w.q.q}</b><br><span style="color:var(--bad)">Você marcou ${w.k}: ${w.q.opts.find(o => o.k === w.k).t}</span><br>
+       <span style="color:var(--good)">Certa ${w.q.ans}: ${w.q.opts.find(o => o.k === w.q.ans).t}</span><div class="explain" style="margin-top:8px">${w.q.exp}</div></li>`).join("")}</ul>` : ""}
+  </div>`;
+  const rt = $("#r-retry"); if (rt) rt.onclick = () => startQuiz(shuffle(S.wrong.map(w => w.q)));
+  $("#r-new").onclick = () => renderQuizSetup();
+}
+
+/* ---------- PROGRESSO ---------- */
+function renderProgress() {
+  const cK = DATA.cards.filter(c => store.cards[c.id] === "known").length;
+  const qs = qStats(DATA.quiz), reads = DATA.resumo.filter(s => s.id && store.read[s.id]).length;
+  const nAulas = DATA.resumo.filter(s => s.id).length;
+  const row = n => {
+    const cs = DATA.cards.filter(c => c.aula === n), ck = cs.filter(c => store.cards[c.id] === "known").length;
+    const q = qStats(DATA.quiz.filter(x => x.aula === n));
+    return `<tr><td><b>Aula ${n}</b><br><span style="color:var(--muted)">${DATA.aulas[n]}</span></td>
+      <td>${store.read[n] ? "✓" : "–"}</td>
+      <td><div class="progress good"><i style="width:${pct(ck, cs.length)}%"></i></div>${ck}/${cs.length}</td>
+      <td><div class="progress ${q.seen && !q.wrong ? "good" : ""}"><i style="width:${pct(q.lastOk, q.total)}%"></i></div>${q.lastOk}/${q.total} certas${q.wrong ? ` · <span style="color:var(--bad)">${q.wrong} p/ revisar</span>` : ""}</td>
+      <td><button class="btn" data-w="${n}" ${q.wrong ? "" : "disabled"}>Refazer erradas</button></td></tr>`;
+  };
+  $("#prog").innerHTML = `<div class="stats">
+      <div class="card stat"><div class="v">${reads}/${nAulas}</div><div class="l">aulas lidas</div></div>
+      <div class="card stat"><div class="v">${cK}/${DATA.cards.length}</div><div class="l">flashcards dominados</div></div>
+      <div class="card stat"><div class="v">${qs.lastOk}/${qs.total}</div><div class="l">questões certas na última tentativa</div></div>
+      <div class="card stat"><div class="v">${pct(qs.lastOk, qs.seen)}%</div><div class="l">aproveitamento nas respondidas</div></div>
+    </div>
+    <div class="card" style="overflow-x:auto"><table class="ptable"><thead><tr><th>Aula</th><th>Lida</th><th>Flashcards</th><th>Quiz</th><th></th></tr></thead>
+      <tbody>${aulaIds.map(row).join("")}</tbody></table></div>
+    <p style="margin-top:18px"><button class="btn bad" id="reset">Apagar meu progresso</button></p>`;
+  $$("[data-w]").forEach(b => b.onclick = () => {
+    const n = b.dataset.w; quizState = null; go("quiz"); renderQuizSetup(+n);
+    $("#qs-wrong").checked = true; $("#qs-aula").dispatchEvent(new Event("change"));
+  });
+  $("#reset").onclick = () => { if (confirm("Apagar leituras, flashcards e quiz?")) { store.read = {}; store.cards = {}; store.quiz = {}; save(); renderProgress(); renderSide(); buildDeck(); } };
+}
+
+/* ---------- atalhos de teclado ---------- */
+document.addEventListener("keydown", e => {
+  if (typing(e) || e.ctrlKey || e.metaKey || e.altKey) return;
+  if (current === "cards") {
+    if (e.key === " ") { if (e.target.tagName === "BUTTON") return; e.preventDefault(); flip(); }
+    else if (e.key === "1") mark("learn");
+    else if (e.key === "2") mark("known");
+    else if (e.key === "ArrowRight") step(1);
+    else if (e.key === "ArrowLeft") step(-1);
+  } else if (current === "quiz" && quizState) {
+    const k = e.key.toUpperCase();
+    if (!quizState.picked && "ABCD".includes(k) && k.length === 1) answer(k);
+    else if ((e.key === "Enter" || e.key === "ArrowRight") && quizState.picked) { e.preventDefault(); nextQ(); }
+  }
+});
+
+/* ---------- início ---------- */
+renderResumo();
+buildDeck();
+window.addEventListener("hashchange", () => go(location.hash.slice(1)));
+go(location.hash.slice(1) || "resumo");
+</script>
+</body>
+</html>
