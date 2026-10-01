@@ -1,0 +1,22 @@
+version: '3.8'
+services:
+  banco:
+    image: postgres:15-alpine
+    environment:
+      POSTGRES_USER: admin
+      POSTGRES_PASSWORD: senha123
+      POSTGRES_DB: meubanco
+    volumes:
+      - pgdata:/var/lib/postgresql/data
+
+  api:
+    build: ./api
+    ports:
+      - "8000:8000"
+    depends_on:
+      - banco
+    environment:
+      DATABASE_URL: postgres://admin:senha123@banco:5432/meubanco
+
+volumes:
+  pgdata:
